@@ -15,14 +15,13 @@ const protect = async (req, res, next) => {
 
       req.user = await User.findById(decoded.id).select('-password');
 
-      return next(); // Add 'return' so execution stops here after calling next()
+      return next();
     } catch (error) {
       console.error('Token verification failed:', error);
       return res.status(401).json({ message: 'Not authorized, token verification failed' });
     }
   }
 
-  // If there is no token at all, stop execution and return the error
   if (!token) {
     return res.status(401).json({ message: 'Not authorized, no token provided' });
   }

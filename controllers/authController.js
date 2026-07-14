@@ -1,11 +1,6 @@
 const User = require('../models/userModel');
 const { generateToken } = require('../utils/jwtHelper');
 
-/**
- * @desc    Register a new user
- * @route   POST /api/auth/register
- * @access  Public
- */
 const registerUser = async (req, res) => {
   const { username, email, password } = req.body;
 
@@ -40,11 +35,6 @@ const registerUser = async (req, res) => {
   }
 };
 
-/**
- * @desc    Authenticate a user & get token
- * @route   POST /api/auth/login
- * @access  Public
- */
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
@@ -70,11 +60,6 @@ const loginUser = async (req, res) => {
   }
 };
 
-/**
- * @desc    Get user profile (Protected route)
- * @route   GET /api/auth/profile
- * @access  Private
- */
 const getUserProfile = async (req, res) => {
   try {
 

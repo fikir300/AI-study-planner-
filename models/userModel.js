@@ -7,7 +7,6 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
 }, { timestamps: true });
 
-//  USE THIS MODERN ASYNC HOOK (NO 'next' parameter)
 userSchema.pre('save', async function () {
   if (!this.isModified('password')) {
     return; // Just return instead of calling next()
@@ -17,7 +16,6 @@ userSchema.pre('save', async function () {
   this.password = await bcrypt.hash(this.password, salt);
 });
 
-// Method to compare passwords
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
